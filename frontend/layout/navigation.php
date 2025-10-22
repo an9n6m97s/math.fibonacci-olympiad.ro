@@ -3,7 +3,7 @@ $menu = $settings['navigation_pages'];
 ?>
 
 <?php foreach ($menu as $item) : ?>
-    <?php if (!$item['adminOnly']): ?>
+    <?php if (!($item['adminOnly'] ?? false)): ?>
         <li>
             <a href="<?= $item['link'] ?>"><?= $item['name'] ?></a>
             <?php if (!empty($item['submenu'])): ?>
@@ -14,8 +14,5 @@ $menu = $settings['navigation_pages'];
                 </ul>
             <?php endif; ?>
         </li>
-    <?php else: continue;
-    endif; ?>
+    <?php endif; ?>
 <?php endforeach; ?>
-
-<li class="mobile-only"><a href="/ucp/">Go to UCP</a></li>

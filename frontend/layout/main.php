@@ -91,14 +91,18 @@ headerCalls();
 
 
     <?php
-    if ((!page('coming-soon') && !page('maintenance')) && !page('email') && !preg_match('#^/ucp(?:/[^/]+)*/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH))) {
+    $uriPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '';
+    $isAdminArea = preg_match('#^/admin(?:/|$)#', $uriPath);
+    if ((!page('coming-soon') && !page('maintenance')) && !page('email') && !preg_match('#^/ucp(?:/[^/]+)*/?$#', $uriPath) && !$isAdminArea) {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/frontend/layout/header.php';
-    } elseif (!page('login')  && !page('registration')  && !page('forgot-password')  && !page('reset-password') && preg_match('#^/ucp(?:/[^/]+)*/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH))) {
+    } elseif (!page('login')  && !page('registration')  && !page('forgot-password')  && !page('reset-password') && preg_match('#^/ucp(?:/[^/]+)*/?$#', $uriPath)) {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/frontend/layout/ucp/header.php';
+    } elseif ($isAdminArea) {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/frontend/admin/layout/header.php';
     }
     ?>
 
-    <?php if (!preg_match('#^/ucp(?:/[^/]+)*/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH))) : ?>
+    <?php if (!preg_match('#^/ucp(?:/[^/]+)*/?$#', $uriPath) && !$isAdminArea) : ?>
         <div class="page-wrapper">
             <!-- Cursor -->
             <div class="cursor"></div>
@@ -116,15 +120,17 @@ headerCalls();
             include $_SERVER['DOCUMENT_ROOT'] . '/frontend/404.php';
         }
         ?>
-        <?php if (!preg_match('#^/ucp(?:/[^/]+)*/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH))) : ?>
+        <?php if (!preg_match('#^/ucp(?:/[^/]+)*/?$#', $uriPath) && !$isAdminArea) : ?>
         </div>
     <?php endif; ?>
 
     <?php
-    if ((!page('coming-soon') && !page('maintenance')) && !page('email') && !preg_match('#^/ucp(?:/[^/]+)*/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH))) {
+    if ((!page('coming-soon') && !page('maintenance')) && !page('email') && !preg_match('#^/ucp(?:/[^/]+)*/?$#', $uriPath) && !$isAdminArea) {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/frontend/layout/footer.php';
-    } elseif (!page('login')  && !page('registration')  && !page('forgot-password')  && !page('reset-password') && preg_match('#^/ucp(?:/[^/]+)*/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH))) {
+    } elseif (!page('login')  && !page('registration')  && !page('forgot-password')  && !page('reset-password') && preg_match('#^/ucp(?:/[^/]+)*/?$#', $uriPath)) {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/frontend/layout/ucp/footer.php';
+    } elseif ($isAdminArea) {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/frontend/admin/layout/footer.php';
     }
     ?>
 

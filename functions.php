@@ -19,6 +19,10 @@ use PHPMailer\PHPMailer\Exception;
 
 env::loadEnv();
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 global $csrf;
 global $rateLimiter;
 
@@ -88,46 +92,35 @@ function resolveFrontendPath(string $requestPath)
         exit;
     }
 
-    if ($page === 'ucp') {
-        header('Location: /ucp/dashboard', true, 302);
-        exit;
-    }
-
-    if ($page === 'ucp/team') {
-        header('Location: /ucp/team/view', true, 302);
-        exit;
-    }
-
-    if ($page === 'ucp/members') {
-        header('Location: /ucp/members/view', true, 302);
-        exit;
-    }
-
-    if ($page === 'ucp/robots') {
-        header('Location: /ucp/robots/view', true, 302);
-        exit;
-    }
-
     if (preg_match('#^regulation(/.*)?$#', $page)) {
         return "$frontendPath/regulation.php";
-    }
-
-    if (preg_match('#^ucp/regulation(/.*)?$#', $page)) {
-        return "$frontendPath/ucp/regulation.php";
     }
 
     if ($page === 'index') {
         return "$frontendPath/homepage.php";
     }
 
-    if ($page === 'login') {
-        header('Location: /ucp/login', true, 302);
-        exit;
+    if ($page === 'principles') {
+        return "$frontendPath/principles.php";
     }
 
-    if ($page === 'registration' || $page === 'register') {
-        header('Location: /ucp/register', true, 302);
-        exit;
+    if (preg_match('#^admin(/.*)?$#', $requestPath)) {
+        $adminPath = trim(substr($requestPath, strlen('admin')), '/');
+        if ($adminPath === '' || $adminPath === 'index') {
+            return "$frontendPath/admin/dashboard.php";
+        }
+
+        $adminFullPath = "$frontendPath/admin/" . $adminPath;
+
+        if (is_dir($adminFullPath) && file_exists($adminFullPath . '/index.php')) {
+            return $adminFullPath . '/index.php';
+        }
+
+        if (file_exists($adminFullPath . '.php')) {
+            return $adminFullPath . '.php';
+        }
+
+        return "$frontendPath/404.php";
     }
 
     if (is_dir("$frontendPath/$page") && file_exists("$frontendPath/$page/index.php")) {
@@ -136,10 +129,6 @@ function resolveFrontendPath(string $requestPath)
 
     if (file_exists("$frontendPath/$page.php")) {
         return "$frontendPath/$page.php";
-    }
-    if (preg_match('#^/ucp(?:/[^/]+)*/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH))) {
-        header('Location: /404', true, 302);
-        exit;
     }
     http_response_code(404);
     return "$frontendPath/404.php";
@@ -583,6 +572,66 @@ function isLogged(): bool
 {
     $sessionKey = getenv('SESSION_USER_ID');
     return !empty($_SESSION[$sessionKey]) && is_numeric($_SESSION[$sessionKey]);
+}
+
+function adminSessionKey(): string
+{
+    $key = getenv('SESSION_ADMIN_ID');
+    return $key !== false && $key !== '' ? $key : 'fibo_admin_id';
+}
+
+function isAdminLoggedIn(): bool
+{
+    $sessionKey = adminSessionKey();
+    return isset($_SESSION[$sessionKey]) && is_numeric($_SESSION[$sessionKey]) && (int)$_SESSION[$sessionKey] > 0;
+}
+
+function requireAdminLogin(): void
+{
+    if (!isAdminLoggedIn()) {
+        header('Location: /admin/login');
+        exit;
+    }
+}
+
+function setAdminSession(int $adminId): void
+{
+    $sessionKey = adminSessionKey();
+    $_SESSION[$sessionKey] = $adminId;
+}
+
+function clearAdminSession(): void
+{
+    $sessionKey = adminSessionKey();
+    unset($_SESSION[$sessionKey]);
+}
+
+function getAdminId(): int
+{
+    $sessionKey = adminSessionKey();
+    return isset($_SESSION[$sessionKey]) && is_numeric($_SESSION[$sessionKey]) ? (int)$_SESSION[$sessionKey] : 0;
+}
+
+function getAdminProfile(): ?array
+{
+    global $conn;
+    $adminId = getAdminId();
+    if ($adminId <= 0) {
+        return null;
+    }
+
+    $stmt = $conn->prepare('SELECT id, username, email, full_name, role FROM admins WHERE id = ? LIMIT 1');
+    if (!$stmt) {
+        return null;
+    }
+
+    $stmt->bind_param('i', $adminId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result ? $result->fetch_assoc() : null;
+    $stmt->close();
+
+    return $data ?: null;
 }
 
 function secureUCP()
@@ -1245,6 +1294,48 @@ function getChangelogs()
         }
     }
     return $changelogs;
+}
+
+function getParticipantStatistics(): array
+{
+    global $conn;
+
+    $stats = [
+        'total'   => 0,
+        'cities'  => 0,
+        'schools' => 0,
+        'latest'  => [],
+    ];
+
+    if (!$conn instanceof mysqli) {
+        return $stats;
+    }
+
+    $query = 'SELECT COUNT(*) AS total,
+                     COUNT(DISTINCT city) AS cities,
+                     COUNT(DISTINCT school) AS schools
+              FROM participants';
+    if ($result = $conn->query($query)) {
+        if ($row = $result->fetch_assoc()) {
+            $stats['total']   = (int)($row['total'] ?? 0);
+            $stats['cities']  = (int)($row['cities'] ?? 0);
+            $stats['schools'] = (int)($row['schools'] ?? 0);
+        }
+        $result->free();
+    }
+
+    $latestQuery = 'SELECT first_name, last_name, city, school, class, created_at
+                    FROM participants
+                    ORDER BY created_at DESC
+                    LIMIT 5';
+    if ($latestResult = $conn->query($latestQuery)) {
+        while ($row = $latestResult->fetch_assoc()) {
+            $stats['latest'][] = $row;
+        }
+        $latestResult->free();
+    }
+
+    return $stats;
 }
 
 function getAdminDataById($id)
