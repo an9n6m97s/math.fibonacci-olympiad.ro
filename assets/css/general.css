@@ -1,0 +1,1065 @@
+/* ===========================
+   Fibonacci Admin Role Badges
+   =========================== */
+
+/* Base: dimensiuni și aliniere perfectă pe verticală */
+.fibo-badge {
+  --h: 30px;
+  --pad-x: 12px;
+  --r: 999px;
+  --fw: 600;
+  --bg: rgba(8, 12, 20, 0.72);
+  --txt: #e9f1ff;
+  --glow: 0 0 18px rgba(88, 180, 255, 0.55), 0 0 42px rgba(88, 180, 255, 0.25);
+  --border-alpha: 0.85;
+  --border-w: 2px;
+
+  position: relative;
+  display: inline-flex;
+  height: var(--h);
+  padding: 0 var(--pad-x);
+  border-radius: var(--r);
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: 13px;
+  font-weight: var(--fw);
+  letter-spacing: 0.3px;
+  color: var(--txt);
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    ),
+    var(--bg);
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 0 var(--border-w) rgba(160, 200, 255, 0.12),
+    0 6px 18px rgba(0, 0, 0, 0.25);
+  isolation: isolate;
+  will-change: transform, filter;
+  transform: translateZ(0);
+}
+.fibo-badge--sm {
+  --h: 22px;
+  --pad-x: 8px;
+  font-size: 11px;
+  font-weight: 500;
+}
+/* Halo animat (bordură plasmatică) */
+.fibo-badge::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0) 140deg,
+    var(--c1) 180deg,
+    var(--c2) 220deg,
+    rgba(255, 255, 255, 0) 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: blur(6px) saturate(140%);
+  opacity: var(--border-alpha);
+  z-index: -1;
+  animation: fibo-spin 3.5s linear infinite;
+}
+
+/* Shimmer fin pe text */
+.fibo-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 35%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0;
+  animation: fibo-shimmer 2.8s ease-in-out infinite;
+}
+
+/* Hover: ridicare subtilă și glow */
+.fibo-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 var(--border-w) rgba(200, 230, 255, 0.18),
+    0 8px 22px rgba(0, 0, 0, 0.32), var(--glow);
+}
+.fibo-badge:hover::after {
+  opacity: 0.35;
+}
+
+/* motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .fibo-chip--new .fibo-comet,
+  .fibo-chip--updated,
+  .fibo-chip--require::after {
+    animation: none !important;
+  }
+}
+
+/* Animații */
+@keyframes fibo-spin {
+  to {
+    --angle: 360deg;
+  }
+}
+@keyframes fibo-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* Role themes
+   Culori neon fără să murdărească restul site-ului.
+*/
+.fibo-dev {
+  --c1: #79f7ff;
+  --c2: #3fa6ff;
+  --bg: linear-gradient(180deg, rgba(25, 32, 55, 0.85), rgba(8, 12, 20, 0.8));
+  --txt: #e9fbff;
+  --glow: 0 0 20px rgba(105, 220, 255, 0.55), 0 0 44px rgba(63, 166, 255, 0.28);
+  box-shadow: inset 0 0 0 var(--border-w) rgba(102, 198, 255, 0.22),
+    0 6px 18px rgba(0, 35, 81, 0.45);
+}
+
+.fibo-owner {
+  --c1: #ffd36e;
+  --c2: #ff8f3f;
+  --bg: linear-gradient(180deg, rgba(45, 32, 10, 0.9), rgba(16, 10, 4, 0.85));
+  --txt: #fff6de;
+  --glow: 0 0 20px rgba(255, 191, 71, 0.55), 0 0 44px rgba(255, 143, 63, 0.28);
+  box-shadow: inset 0 0 0 var(--border-w) rgba(255, 190, 90, 0.24),
+    0 6px 18px rgba(85, 40, 0, 0.45);
+}
+
+.fibo-admin {
+  --c1: #a871ff;
+  --c2: #6a4dff;
+  --bg: linear-gradient(180deg, rgba(30, 18, 55, 0.9), rgba(10, 6, 20, 0.85));
+  --txt: #f2eaff;
+  --glow: 0 0 20px rgba(150, 113, 255, 0.55), 0 0 44px rgba(106, 77, 255, 0.28);
+  box-shadow: inset 0 0 0 var(--border-w) rgba(160, 120, 255, 0.22),
+    0 6px 18px rgba(20, 0, 80, 0.45);
+}
+
+.fibo-media {
+  --c1: #6bffbf;
+  --c2: #22e3a9;
+  --bg: linear-gradient(180deg, rgba(10, 40, 30, 0.9), rgba(4, 16, 12, 0.85));
+  --txt: #e9fff6;
+  --glow: 0 0 20px rgba(80, 255, 180, 0.55), 0 0 44px rgba(34, 227, 169, 0.28);
+  box-shadow: inset 0 0 0 var(--border-w) rgba(70, 220, 160, 0.22),
+    0 6px 18px rgba(0, 70, 40, 0.45);
+}
+
+.fibo-marketing {
+  --c1: #ff7bd1;
+  --c2: #ff477e;
+  --bg: linear-gradient(180deg, rgba(55, 10, 35, 0.9), rgba(20, 4, 14, 0.85));
+  --txt: #ffe9f6;
+  --glow: 0 0 20px rgba(255, 120, 200, 0.55), 0 0 44px rgba(255, 71, 126, 0.28);
+  box-shadow: inset 0 0 0 var(--border-w) rgba(255, 120, 200, 0.22),
+    0 6px 18px rgba(80, 0, 40, 0.45);
+}
+
+.fibo-coach {
+  background: linear-gradient(180deg, #2c1a0d, #1a1008);
+  color: #ffb97a;
+  border: 1px solid rgba(255, 185, 122, 0.5);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.fibo-leader {
+  background: linear-gradient(180deg, #1a2340, #101524);
+  color: #9dbaff;
+  border: 1px solid rgba(157, 186, 255, 0.5);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.fibo-member {
+  background: linear-gradient(180deg, #0f2a26, #0a1b18);
+  color: #7fffe0;
+  border: 1px solid rgba(127, 255, 224, 0.5);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.fibo-email-verified {
+  background: linear-gradient(180deg, #0f2a0f, #0a1b0a);
+  color: #7fff7f;
+  border: 1px solid rgba(127, 255, 127, 0.5);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.fibo-team-name {
+  background: linear-gradient(180deg, #1a237e, #0d1335);
+  color: #d0d8ff;
+  border: 1px solid rgba(208, 216, 255, 0.5);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* Variantă fallback “Staff” */
+.fibo-badge:not(.fibo-dev):not(.fibo-owner):not(.fibo-admin):not(
+    .fibo-media
+  ):not(.fibo-marketing) {
+  --c1: #9bd0ff;
+  --c2: #4aa8ff;
+}
+
+/* Dimensiuni alternative la nevoie */
+.fibo-badge.badge-sm {
+  --h: 24px;
+  --pad-x: 10px;
+  font-size: 11.5px;
+}
+.fibo-badge.badge-lg {
+  --h: 36px;
+  --pad-x: 16px;
+  font-size: 14px;
+}
+
+/* Opțional: efect subtil de “press” când e click-uit */
+.fibo-badge:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+/* ===========================
+   Fibonacci • Neo Tags (custom)
+   =========================== */
+
+.fibo-chip {
+  /* sizing */
+  --h: 22px;
+  --px: 10px;
+  --fs: 11px;
+  --br: 999px;
+  /* base colors per theme (overridden below) */
+  --c1: #7dd3fc;
+  --c2: #60a5fa;
+  --txt: #e9f1ff;
+  --bg: rgba(10, 14, 22, 0.68);
+  --ring-alpha: 0.85;
+  --blur: 7px;
+  --bw: 1.5px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--h);
+  padding: 0 var(--px);
+  border-radius: var(--br);
+  font-size: var(--fs);
+  font-weight: 700;
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+  color: var(--txt);
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    ),
+    var(--bg);
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 var(--bw) rgba(160, 200, 255, 0.1),
+    0 6px 18px rgba(0, 0, 0, 0.25);
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  isolation: isolate;
+}
+
+/* Plasma ring */
+.fibo-chip::before {
+  content: "";
+  position: absolute;
+  inset: -2.5px;
+  border-radius: inherit;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--ang, 0deg),
+    transparent 0turn,
+    var(--c1) 0.25turn,
+    var(--c2) 0.35turn,
+    transparent 0.6turn,
+    transparent 1turn
+  );
+  filter: blur(var(--blur)) saturate(140%);
+  opacity: var(--ring-alpha);
+  animation: fibo-rotate 4s linear infinite;
+}
+
+/* Text shimmer fin */
+.fibo-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 40%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  opacity: 0;
+  mix-blend-mode: screen;
+  animation: fibo-shimmer 3s ease-in-out infinite;
+}
+
+/* Hover polish */
+.fibo-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 var(--bw) rgba(200, 230, 255, 0.16),
+    0 8px 22px rgba(0, 0, 0, 0.32),
+    0 0 18px color-mix(in srgb, var(--c2) 40%, transparent);
+}
+.fibo-chip:hover::after {
+  opacity: 0.35;
+}
+
+@keyframes fibo-rotate {
+  to {
+    --ang: 1turn;
+  }
+}
+@keyframes fibo-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fibo-chip,
+  .fibo-chip::before,
+  .fibo-chip::after {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Dot accent (opțional) */
+.fibo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: currentColor;
+  display: inline-block;
+}
+
+/* Sizes */
+.fibo-chip--sm {
+  --h: 18px;
+  --px: 8px;
+  --fs: 10px;
+}
+.fibo-chip--lg {
+  --h: 26px;
+  --px: 12px;
+  --fs: 12px;
+}
+
+/* Outline + Ghost variants (tot pe estetică neo) */
+.fibo-chip--outline {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--c2) 60%, transparent);
+}
+.fibo-chip--ghost {
+  background: color-mix(in srgb, var(--c2) 10%, transparent);
+}
+
+/* THEME MAP
+   Fiecare temă setează perechea neon var(--c1/--c2), text și bg pentru contrast pe dark.
+*/
+.fibo--primary {
+  --c1: #7dd3fc;
+  --c2: #3b82f6;
+  --txt: #eaf6ff;
+  --bg: rgba(10, 18, 36, 0.7);
+}
+.fibo--secondary {
+  --c1: #a8b0c2;
+  --c2: #64748b;
+  --txt: #e8ecf2;
+  --bg: rgba(17, 20, 28, 0.7);
+}
+.fibo--success {
+  --c1: #34f5a1;
+  --c2: #10b981;
+  --txt: #eafff6;
+  --bg: rgba(6, 28, 22, 0.7);
+}
+.fibo--danger {
+  --c1: #ff7a7a;
+  --c2: #ef4444;
+  --txt: #ffecec;
+  --bg: rgba(28, 10, 12, 0.72);
+}
+.fibo--warning {
+  --c1: #ffe08a;
+  --c2: #f59e0b;
+  --txt: #1f1400;
+  --bg: rgba(36, 26, 6, 0.78);
+}
+.fibo--info {
+  --c1: #7ef2ff;
+  --c2: #06b6d4;
+  --txt: #e9fcff;
+  --bg: rgba(6, 24, 30, 0.74);
+}
+.fibo--updated {
+  --c1: #c084fc;
+  --c2: #8b5cf6;
+  --txt: #f6f1ff;
+  --bg: rgba(24, 10, 36, 0.74);
+}
+.fibo--dark {
+  --c1: #8ea2b8;
+  --c2: #334155;
+  --txt: #e6edf6;
+  --bg: rgba(12, 16, 22, 0.82);
+}
+.fibo--light {
+  --c1: #ffffff;
+  --c2: #d0d7e2;
+  --txt: #0b1020;
+  --bg: rgba(240, 244, 248, 0.9);
+}
+
+/* PINNED special: aur neon cu “pin” vector mascat */
+.fibo-pin {
+  --c1: #ffe6a3;
+  --c2: #ffbe55;
+  --txt: #211600;
+  --bg: linear-gradient(180deg, #fff3c2, #ffe190);
+  border-color: #ffd36b;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.35),
+    0 8px 22px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 190, 85, 0.25);
+  color: white !important;
+}
+.fibo-pin i {
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="black"><path d="M14 2l-2 3-5 5 3 3 5-5 3-2-4-4zm-7 8l-4 12 12-4-8-8z"/></svg>')
+    center/contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="black"><path d="M14 2l-2 3-5 5 3 3 5-5 3-2-4-4zm-7 8l-4 12 12-4-8-8z"/></svg>')
+    center/contain no-repeat;
+}
+
+/* Nav helper (badge plutitor în link) */
+.fibo-chip--nav {
+  margin-left: 0.5rem;
+}
+.fibo-chip--float {
+  position: absolute;
+  top: 6px;
+  right: 12px;
+}
+
+/* NEW: turcoaz-neon cu cometă subtile */
+.fibo-chip--new {
+  --c1: #7ef2ff;
+  --c2: #22d3ee;
+  --txt: #eaffff;
+  --bg: rgba(6, 24, 30, 0.72);
+  position: relative;
+  overflow: hidden;
+}
+.fibo-chip--new .fibo-comet {
+  position: absolute;
+  top: 50%;
+  left: -30%;
+  width: 36%;
+  height: 140%;
+  transform: translateY(-50%) rotate(12deg);
+  background: radial-gradient(
+      circle at 0% 50%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 60%
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+  opacity: 0;
+  pointer-events: none;
+  animation: fibo-new-sweep 2.4s ease-in-out infinite;
+}
+@keyframes fibo-new-sweep {
+  10% {
+    opacity: 0;
+    left: -30%;
+  }
+  25% {
+    opacity: 0.35;
+    left: 10%;
+  }
+  60% {
+    opacity: 0;
+    left: 120%;
+  }
+  100% {
+    opacity: 0;
+    left: 120%;
+  }
+}
+
+/* UPDATED: mov-neon cu icon “refresh” vector mascat + puls consistent */
+.fibo-chip--updated {
+  --c1: #c084fc;
+  --c2: #8b5cf6;
+  --txt: #f6f1ff;
+  --bg: rgba(24, 10, 36, 0.74);
+}
+.fibo-chip--updated i {
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65 6.35A7.95 7.95 0 0 0 12 4a8 8 0 1 0 7.45 5.11" fill="black"/><path d="M17 1v6h6" fill="black"/></svg>')
+    center/contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65 6.35A7.95 7.95 0 0 0 12 4a8 8 0 1 0 7.45 5.11" fill="black"/><path d="M17 1v6h6" fill="black"/></svg>')
+    center/contain no-repeat;
+}
+.fibo-chip--updated {
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.18),
+    0 0 0 0 rgba(139, 92, 246, 0.4);
+}
+.fibo-chip--updated {
+  animation: fibo-upd-pulse 2.6s ease-in-out infinite;
+}
+@keyframes fibo-upd-pulse {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.18),
+      0 0 0 0 rgba(139, 92, 246, 0.35);
+  }
+  50% {
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.22),
+      0 0 22px 6px rgba(139, 92, 246, 0.25);
+  }
+}
+
+.fibo-chip--require {
+  --c1: #ff7a7a;
+  --c2: #ef4444;
+  --txt: #ffecec;
+  --bg: rgba(28, 10, 12, 0.76);
+  position: relative;
+  overflow: hidden;
+}
+.fibo-chip--require::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.06) 0 8px,
+    rgba(255, 255, 255, 0) 8px 16px
+  );
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: fibo-req-scan 5s linear infinite;
+}
+.fibo-chip--require i {
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="black"/></svg>')
+    center/contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" fill="black"/></svg>')
+    center/contain no-repeat;
+}
+@keyframes fibo-req-scan {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(10%);
+  }
+}
+
+.fibo-chip--update {
+  --c1: #c084fc;
+  --c2: #8b5cf6;
+  --txt: #f6f1ff;
+  --bg: rgba(24, 10, 36, 0.74);
+  position: relative;
+  overflow: hidden;
+}
+.fibo-chip--update::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.06) 0 8px,
+    rgba(255, 255, 255, 0) 8px 16px
+  );
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: fibo-update-sweep 2.4s ease-in-out infinite;
+}
+
+.fibo-chip--update i {
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65 6.35A7.95 7.95 0 0 0 12 4a8 8 0 1 0 7.45 5.11" fill="black"/><path d="M17 1v6h6" fill="black"/></svg>')
+    center/contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65 6.35A7.95 7.95 0 0 0 12 4a8 8 0 1 0 7.45 5.11" fill="black"/><path d="M17 1v6h6" fill="black"/></svg>')
+    center/contain no-repeat;
+}
+@keyframes fibo-update-sweep {
+  10% {
+    opacity: 0;
+    left: -30%;
+  }
+  25% {
+    opacity: 0.35;
+    left: 10%;
+  }
+  60% {
+    opacity: 0;
+    left: 120%;
+  }
+  100% {
+    opacity: 0;
+    left: 120%;
+  }
+}
+
+.fibo-robots-wrap {
+  margin-top: 24px;
+}
+
+.fibo-cat-title {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 48px 0 16px;
+  color: #dc2626;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  font-size: clamp(20px, 2vw, 28px);
+  text-shadow: 0 2px 18px rgba(220, 38, 38, 0.6),
+    0 0 30px rgba(220, 38, 38, 0.3);
+}
+
+.fibo-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(347px, 1fr));
+}
+
+.fibo-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: clip;
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.9) 0%,
+    rgba(185, 28, 28, 0.95) 100%
+  );
+  border: 1px solid rgba(220, 38, 38, 0.5);
+  box-shadow: 0 10px 38px rgba(220, 38, 38, 0.2),
+    0 0 20px rgba(220, 38, 38, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  transition: transform 160ms ease, box-shadow 160ms ease,
+    border-color 160ms ease, background 160ms ease;
+}
+
+.fibo-card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 400px 200px at 20% -5%,
+    rgba(239, 68, 68, 0.25) 0%,
+    rgba(220, 38, 38, 0.15) 40%,
+    transparent 70%
+  );
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+.fibo-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(220, 38, 38, 0.8);
+  box-shadow: 0 16px 54px rgba(220, 38, 38, 0.3),
+    0 0 30px rgba(220, 38, 38, 0.4), 0 0 60px rgba(220, 38, 38, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(248, 113, 113, 0.95) 0%,
+    rgba(220, 38, 38, 1) 100%
+  );
+}
+
+.fibo-body {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 20px;
+}
+
+.fibo-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(220, 38, 38, 0.7);
+  background: rgba(60, 5, 5, 0.9);
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+  display: grid;
+  place-items: center;
+}
+
+.fibo-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fibo-avatar svg {
+  opacity: 0.75;
+}
+
+.fibo-meta {
+  min-width: 0;
+}
+
+.fibo-robot {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  font-size: 1.1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  line-height: 1.2;
+}
+
+.fibo-teamline {
+  margin: 0 0 4px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.fibo-teamname {
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.fibo-teamcode {
+  font: 700 0.8rem ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+  padding: 4px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.2px;
+  border: 1px solid rgba(239, 68, 68, 0.6);
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.8) 0%,
+    rgba(185, 28, 28, 0.9) 100%
+  );
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(220, 38, 38, 0.5);
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+  transform: translateZ(0);
+  transition: box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.fibo-card:hover .fibo-teamcode {
+  border-color: rgba(239, 68, 68, 0.9);
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.4),
+    inset 0 0 0 2px rgba(239, 68, 68, 0.3);
+}
+
+.fibo-loc {
+  margin: 10px 0 0;
+  display: flex;
+  gap: 12px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+  font-weight: 500;
+}
+
+.fibo-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  line-height: 1;
+  border-radius: 12px;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(185, 28, 28, 0.8) 0%,
+    rgba(153, 27, 27, 0.85) 100%
+  );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 8px rgba(220, 38, 38, 0.15);
+  transition: transform 160ms ease, border-color 160ms ease;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.fibo-card:hover .fibo-chip {
+  border-color: rgba(220, 38, 38, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 12px rgba(220, 38, 38, 0.3);
+}
+
+.fibo-chip svg {
+  flex: none;
+}
+
+.fibo-empty {
+  border: 2px dashed rgba(220, 38, 38, 0.5);
+  padding: 22px;
+  border-radius: 14px;
+  text-align: center;
+  color: #dc2626;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.05) 0%,
+    rgba(220, 38, 38, 0.02) 100%
+  );
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.1);
+  margin: 12px 0 0;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+}
+
+.red {
+  color: red !important;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.bold,
+h1.bold,
+h2.bold,
+h3.bold,
+h4.bold,
+h5.bold,
+h6.bold {
+  font-weight: 900 !important;
+}
+
+/* HOT: roșu-neon pentru tab-uri de navigare */
+.fibo-chip--hot {
+  --c1: #ff6b6b;
+  --c2: #ff3b3b;
+  --txt: #ffecec;
+  --bg: rgba(36, 10, 10, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.fibo-chip--hot::before {
+  content: "";
+  position: absolute;
+  inset: -2.5px;
+  border-radius: inherit;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--ang, 0deg),
+    transparent 0turn,
+    var(--c1) 0.25turn,
+    var(--c2) 0.35turn,
+    transparent 0.6turn,
+    transparent 1turn
+  );
+  filter: blur(6px) saturate(140%);
+  opacity: 0.85;
+  animation: fibo-rotate 4s linear infinite;
+}
+
+.fibo-chip--hot i {
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M11.1758045,11.5299649 C11.7222481,10.7630248 11.6612694,9.95529555 11.2823626,8.50234466 C10.5329929,5.62882187 10.8313891,4.05382867 13.4147321,2.18916004 L14.6756139,1.27904986 L14.9805807,2.80388386 C15.3046861,4.42441075 15.8369398,5.42670671 17.2035766,7.35464078 C17.2578735,7.43122022 17.2578735,7.43122022 17.3124108,7.50814226 C19.2809754,10.2854144 20,11.9596204 20,15 C20,18.6883517 16.2713564,22 12,22 C7.72840879,22 4,18.6888043 4,15 C4,14.9310531 4.00007066,14.9331427 3.98838852,14.6284506 C3.89803284,12.2718054 4.33380946,10.4273676 6.09706666,8.43586022 C6.46961415,8.0150872 6.8930834,7.61067534 7.36962714,7.22370749 L8.42161802,6.36945926 L8.9276612,7.62657706 C9.30157948,8.55546878 9.73969716,9.28566491 10.2346078,9.82150804 C10.6537848,10.2753538 10.9647401,10.8460665 11.1758045,11.5299649 Z M7.59448531,9.76165711 C6.23711779,11.2947332 5.91440928,12.6606068 5.98692012,14.5518252 C6.00041903,14.9039019 6,14.8915108 6,15 C6,17.5278878 8.78360021,20 12,20 C15.2161368,20 18,17.527472 18,15 C18,12.4582072 17.4317321,11.1350292 15.6807305,8.66469725 C15.6264803,8.58818014 15.6264803,8.58818014 15.5719336,8.51124844 C14.5085442,7.0111098 13.8746802,5.96758691 13.4553336,4.8005211 C12.7704786,5.62117775 12.8107447,6.43738988 13.2176374,7.99765534 C13.9670071,10.8711781 13.6686109,12.4461713 11.0852679,14.31084 L9.61227259,15.3740546 L9.50184911,13.5607848 C9.43129723,12.4022487 9.16906461,11.6155508 8.76539217,11.178492 C8.36656566,10.7466798 8.00646835,10.2411426 7.68355027,9.66278925 C7.65342985,9.69565638 7.62374254,9.72861259 7.59448531,9.76165711 Z"/></svg>')
+    center/contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M11.1758045,11.5299649 C11.7222481,10.7630248 11.6612694,9.95529555 11.2823626,8.50234466 C10.5329929,5.62882187 10.8313891,4.05382867 13.4147321,2.18916004 L14.6756139,1.27904986 L14.9805807,2.80388386 C15.3046861,4.42441075 15.8369398,5.42670671 17.2035766,7.35464078 C17.2578735,7.43122022 17.2578735,7.43122022 17.3124108,7.50814226 C19.2809754,10.2854144 20,11.9596204 20,15 C20,18.6883517 16.2713564,22 12,22 C7.72840879,22 4,18.6888043 4,15 C4,14.9310531 4.00007066,14.9331427 3.98838852,14.6284506 C3.89803284,12.2718054 4.33380946,10.4273676 6.09706666,8.43586022 C6.46961415,8.0150872 6.8930834,7.61067534 7.36962714,7.22370749 L8.42161802,6.36945926 L8.9276612,7.62657706 C9.30157948,8.55546878 9.73969716,9.28566491 10.2346078,9.82150804 C10.6537848,10.2753538 10.9647401,10.8460665 11.1758045,11.5299649 Z M7.59448531,9.76165711 C6.23711779,11.2947332 5.91440928,12.6606068 5.98692012,14.5518252 C6.00041903,14.9039019 6,14.8915108 6,15 C6,17.5278878 8.78360021,20 12,20 C15.2161368,20 18,17.527472 18,15 C18,12.4582072 17.4317321,11.1350292 15.6807305,8.66469725 C15.6264803,8.58818014 15.6264803,8.58818014 15.5719336,8.51124844 C14.5085442,7.0111098 13.8746802,5.96758691 13.4553336,4.8005211 C12.7704786,5.62117775 12.8107447,6.43738988 13.2176374,7.99765534 C13.9670071,10.8711781 13.6686109,12.4461713 11.0852679,14.31084 L9.61227259,15.3740546 L9.50184911,13.5607848 C9.43129723,12.4022487 9.16906461,11.6155508 8.76539217,11.178492 C8.36656566,10.7466798 8.00646835,10.2411426 7.68355027,9.66278925 C7.65342985,9.69565638 7.62374254,9.72861259 7.59448531,9.76165711 Z"/></svg>')
+    center/contain no-repeat;
+}
+
+/* Readability adjustments for regulation cards on red gradient */
+.fibo-card h3,
+.fibo-card .h4 {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+.fibo-card .text-secondary {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+}
+.fibo-card .text-secondary b,
+.fibo-card .text-secondary strong {
+  color: #ffffff;
+}
+
+.fibo-chip--hot:hover {
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 107, 107, 0.16),
+    0 8px 22px rgba(0, 0, 0, 0.32),
+    0 0 18px color-mix(in srgb, var(--c2) 40%, transparent);
+}
+
+.fibo-chip--hot:hover::after {
+  opacity: 0.35;
+}
+
+.notification-card {
+  width: 330px;
+  height: auto !important;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+}
+.notification-card .wave {
+  position: absolute;
+  transform: rotate(90deg);
+  left: -31px;
+  top: 32px;
+  width: 80px;
+  fill: #4777ff3a;
+}
+.notification-card .icon-container {
+  width: 35px !important;
+  height: 35px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff474748;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+.notification-card .icon {
+  width: 17px;
+  height: 17px;
+  color: #ff1212;
+}
+.notification-card .message-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-grow: 1;
+  color: black !important;
+}
+.notification-card .message-text,
+.notification-card .sub-text {
+  margin: 0;
+  cursor: default;
+  color: black !important;
+}
+.notification-card .message-text {
+  color: #124fff;
+  font-size: 17px;
+  font-weight: 700;
+  color: black !important;
+}
+.notification-card .sub-text {
+  font-size: 14px;
+  color: #555;
+  color: black !important;
+}
+.notification-card .cross-icon {
+  width: 18px;
+  height: 18px;
+  color: #555;
+  cursor: pointer;
+}
+
+.partenersBox {
+  width: 100%;
+  height: 180px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.partenersBox:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 10px rgba(226, 43, 43, 0.35);
+}
+
+@keyframes pulseBorder {
+  0% {
+    box-shadow: 0 0 0 0 rgba(226, 43, 43, 0.85);
+  }
+  50% {
+    box-shadow: 0 0 14px 6px rgb(226, 43, 43);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(226, 43, 43, 0.85);
+  }
+}
+.partenersBox.glow-random {
+  animation: pulseBorder 1s ease-in-out forwards;
+}

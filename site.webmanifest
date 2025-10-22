@@ -1,0 +1,33 @@
+{
+  "id": "/?pwa=1",
+  "name": "Fibonacci Romania",
+  "short_name": "Fibonacci 2026",
+  "description": "Official platform for the Fibonacci Romania 2026. Track teams, events, results, and join the competition.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#141414",
+  "theme_color": "#761fe3",
+  "orientation": "portrait",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/assets/images/logo/logo.webp",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/logo/logo.webp",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/logo/logo.webp",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

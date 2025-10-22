@@ -1,0 +1,10 @@
+# security.txt – EssenByte Solutions
+Contact: mailto:office@fibonacci-olympiad.ro
+Contact: tel:+40746845167
+Encryption: https://fibonacci-olympiad.ro/pgp.asc
+Preferred-Languages: en, ro
+Canonical: https://fibonacci-olympiad.ro/.well-known/security.txt
+Acknowledgements: https://fibonacci-olympiad.ro/about
+Policy: https://fibonacci-olympiad.ro/privacy
+Hiring: https://fibonacci-olympiad.ro/voluteers
+Expires: 2026-12-31T00:00:00Z

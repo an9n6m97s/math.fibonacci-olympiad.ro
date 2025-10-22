@@ -1,0 +1,28 @@
+# Allow all user agents full access
+User-agent: *
+
+# Block specific directories or files
+Disallow: /.vscode/
+Disallow: /.well-known/
+Disallow: /cgi-bin/
+Disallow: /frontend/admin/
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /vendor/
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /cronjobs.md
+Disallow: /functions.js
+Disallow: /server.js
+Disallow: /settings.php
+Disallow: /site.webmanifest
+
+# Allow specific directories or files
+Allow: /frontend/
+Allow: /assets/
+
+# Sitemap location
+Sitemap: https://fibonacci-olympiad.ro/sitemap.xml
+
+# Host directive to specify the preferred domain
+Host: www.fibonacci-olympiad.ro

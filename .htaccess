@@ -1,0 +1,37 @@
+RewriteOptions inherit
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    DefaultType application/x-httpd-php
+    DirectoryIndex index.php index.html
+    
+    # Remove .php extension
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+    RewriteCond %{REQUEST_URI} !^/backend/ [NC]
+    RewriteRule ^ %1 [R=301,L]
+    
+    # Allow /backend/ files to be accessed with or without .php
+    RewriteCond %{REQUEST_URI} ^/backend/ [NC]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*?)/?$ $1.php [NC,L]
+    
+    RewriteCond %{REQUEST_URI} !^/backend/ [NC]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*?)/?$ $1.php [NC,L]
+    
+    # Exclude existing files and directories
+
+    # Redirect all requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+
+    # Error Documents
+    ErrorDocument 404 https://fibonacci-olympiad.ro/404
+</IfModule>
+RewriteCond %{HTTP_HOST} ^challenge\.relativity\.ro$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.challenge\.relativity\.ro$
+RewriteRule ^add\-review$ "https\:\/\/challenge\.relativity\.ro\/testimonial\/add" [R=301,L]

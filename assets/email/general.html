@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:v="urn:schemas-microsoft-com:vml"
+>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{subject}}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <style>
+      /* Mobile */
+      @media screen and (max-width: 680px) {
+        .container {
+          width: 100% !important;
+        }
+        .px {
+          padding-left: 18px !important;
+          padding-right: 18px !important;
+        }
+        .stack {
+          display: block !important;
+          width: 100% !important;
+        }
+        .w-auto {
+          width: auto !important;
+        }
+        .cta {
+          width: 100% !important;
+        }
+        .hide-m {
+          display: none !important;
+        }
+        .hero h1 {
+          font-size: 22px !important;
+          line-height: 1.3 !important;
+        }
+        .tile {
+          width: 100% !important;
+          display: block !important;
+        }
+      }
+      /* Dark mode nudge */
+      @media (prefers-color-scheme: dark) {
+        .bg {
+          background-color: #0b1220 !important;
+        }
+        .card,
+        .side {
+          background-color: #0f172a !important;
+        }
+        .muted {
+          color: #9ca3af !important;
+        }
+        .text {
+          color: #e5e7eb !important;
+        }
+        .divider {
+          border-color: #1f2937 !important;
+        }
+      }
+      a {
+        text-decoration: none;
+      }
+      .btn:hover {
+        opacity: 0.95;
+      }
+    </style>
+    <!--[if mso]>
+      <style type="text/css">
+        body,
+        table,
+        td,
+        a {
+          font-family: Arial, sans-serif !important;
+        }
+        .shadow {
+          box-shadow: none !important;
+        }
+      </style>
+    <![endif]-->
+  </head>
+  <body class="bg" style="margin: 0; padding: 0; background: #0b1220">
+    <!-- Preheader -->
+    <div
+      style="
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        mso-hide: all;
+      "
+    >
+      {{preheader}}
+    </div>
+
+    <!-- Top gradient bar -->
+    <table
+      role="presentation"
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      style="
+        background: linear-gradient(90deg, #0ea5e9, #2563eb, #f97316);
+        height: 4px;
+      "
+    >
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+
+    <!-- Wrapper -->
+    <table
+      role="presentation"
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+    >
+      <tr>
+        <td align="center" style="padding: 0">
+          <!-- Container -->
+          <table
+            role="presentation"
+            class="container"
+            width="680"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+            style="width: 680px; max-width: 100%; margin: 0 auto"
+          >
+            <!-- Header -->
+            <tr>
+              <td class="px" style="padding: 22px 28px; background: #0b1220">
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                >
+                  <tr>
+                    <td valign="middle" class="w-auto">
+                      <a href="https://fibonacci-olympiad.ro" target="_blank">
+                        <img
+                          src="https://fibonacci-olympiad.ro/assets/images/logo/logo.png"
+                          height="96"
+                          alt="Fibonacci Romania"
+                          style="display: block; border: 0; outline: 0"
+                        />
+                      </a>
+                    </td>
+                    <td align="right" valign="middle" class="w-auto">
+                      <table
+                        role="presentation"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                        align="right"
+                      >
+                        <tr>
+                          <td
+                            style="
+                              font: 12px Arial, Helvetica, 'Segoe UI',
+                                sans-serif;
+                              color: #9bd7ff;
+                            "
+                          >
+                            <a
+                              href="https://fibonacci-olympiad.ro/ucp/info/event"
+                              style="color: #9bd7ff"
+                              >Info</a
+                            >&nbsp;•&nbsp;
+                            <a
+                              href="https://fibonacci-olympiad.ro/regulations"
+                              style="color: #9bd7ff"
+                              >Rules</a
+                            >&nbsp;•&nbsp;
+                            <a href="{{ucp_url}}" style="color: #9bd7ff">UCP</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="height: 6px; line-height: 6px">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td align="right">
+                            <!--[if mso]>
+                              <v:roundrect
+                                xmlns:v="urn:schemas-microsoft-com:vml"
+                                href="{{cta_url}}"
+                                style="
+                                  height: 36px;
+                                  v-text-anchor: middle;
+                                  width: 160px;
+                                "
+                                arcsize="12%"
+                                stroke="f"
+                                fillcolor="#2563eb"
+                              >
+                                <w:anchorlock />
+                                <center
+                                  style="
+                                    color: #ffffff;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 13px;
+                                  "
+                                >
+                                  {{cta_label}}
+                                </center>
+                              </v:roundrect>
+                            <![endif]-->
+                            <!--[if !mso]><!-- -->
+                            <a
+                              class="btn cta"
+                              href="{{cta_url}}"
+                              target="_blank"
+                              style="
+                                display: inline-block;
+                                background: linear-gradient(
+                                  90deg,
+                                  #2563eb,
+                                  #0ea5e9
+                                );
+                                color: #ffffff;
+                                padding: 10px 16px;
+                                border-radius: 10px;
+                                font: 700 13px Arial, Helvetica, 'Segoe UI',
+                                  sans-serif;
+                              "
+                            >
+                              {{cta_label}}
+                            </a>
+                            <!--<![endif]-->
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Hero -->
+            <tr>
+              <td
+                class="px hero"
+                style="padding: 0 28px 18px 28px; background: #0b1220"
+              >
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  style="
+                    background: #0f172a;
+                    border: 1px solid rgba(255, 255, 255, 0.06);
+                    border-radius: 16px;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 22px">
+                      <div
+                        style="
+                          font: 700 22px/1.3 Arial, Helvetica, 'Segoe UI',
+                            sans-serif;
+                          color: #e5e7eb;
+                          margin-bottom: 6px;
+                        "
+                      >
+                        {{headline|Fibonacci Romania 2026}}
+                      </div>
+                      <div
+                        style="
+                          font: 400 13px/1.6 Arial, Helvetica, 'Segoe UI',
+                            sans-serif;
+                          color: #9ca3af;
+                        "
+                      >
+                        Buzău, Romania • Building the future of robotics
+                      </div>
+                      <div style="height: 14px"></div>
+                      <!-- KPI tiles -->
+                      <table
+                        role="presentation"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                        width="100%"
+                      >
+                        <tr>
+                          <td
+                            class="tile"
+                            width="33.33%"
+                            style="padding: 6px 6px 0 0"
+                          >
+                            <table
+                              role="presentation"
+                              width="100%"
+                              style="background: #111827; border-radius: 12px"
+                            >
+                              <tr>
+                                <td
+                                  style="
+                                    padding: 12px 14px;
+                                    font: 700 14px Arial, sans-serif;
+                                    color: #e5e7eb;
+                                  "
+                                >
+                                  Categories
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  style="
+                                    padding: 0 14px 12px;
+                                    font: 400 12px Arial, sans-serif;
+                                    color: #9ca3af;
+                                  "
+                                >
+                                  <a
+                                    href="https://fibonacci-olympiad.ro/regulations"
+                                    style="color: #9bd7ff"
+                                    >View All Categories →</a
+                                  >
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td
+                            class="tile"
+                            width="33.33%"
+                            style="padding: 6px 3px 0 3px"
+                          >
+                            <table
+                              role="presentation"
+                              width="100%"
+                              style="background: #111827; border-radius: 12px"
+                            >
+                              <tr>
+                                <td
+                                  style="
+                                    padding: 12px 14px;
+                                    font: 700 14px Arial, sans-serif;
+                                    color: #e5e7eb;
+                                  "
+                                >
+                                  When
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  style="
+                                    padding: 0 14px 12px;
+                                    font: 400 12px Arial, sans-serif;
+                                    color: #9ca3af;
+                                  "
+                                >
+                                  {{event_dates|TBA}}
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td
+                            class="tile"
+                            width="33.33%"
+                            style="padding: 6px 0 0 6px"
+                          >
+                            <table
+                              role="presentation"
+                              width="100%"
+                              style="background: #111827; border-radius: 12px"
+                            >
+                              <tr>
+                                <td
+                                  style="
+                                    padding: 12px 14px;
+                                    font: 700 14px Arial, sans-serif;
+                                    color: #e5e7eb;
+                                  "
+                                >
+                                  Location
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  style="
+                                    padding: 0 14px 12px;
+                                    font: 400 12px Arial, sans-serif;
+                                    color: #9ca3af;
+                                  "
+                                >
+                                  LTIAM • Buzău, RO
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- Accent bar -->
+                  <tr>
+                    <td
+                      height="4"
+                      style="
+                        background: linear-gradient(
+                          90deg,
+                          #0ea5e9,
+                          #2563eb,
+                          #f97316
+                        );
+                        border-radius: 0 0 16px 16px;
+                      "
+                    ></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Main two-column layout -->
+            <tr>
+              <td
+                class="px"
+                style="padding: 0 28px 24px 28px; background: #0b1220"
+              >
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                >
+                  <tr>
+                    <!-- Content card - MĂRITĂ LA MAXIM -->
+                    <td
+                      class="stack"
+                      valign="top"
+                      width="100%"
+                      style="padding: 0"
+                    >
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                        class="card"
+                        style="
+                          background: #0f172a;
+                          border: 1px solid rgba(255, 255, 255, 0.06);
+                          border-radius: 16px;
+                        "
+                      >
+                        <tr>
+                          <td
+                            class="text"
+                            style="
+                              padding: 22px;
+                              font-family: Arial, Helvetica, 'Segoe UI',
+                                sans-serif;
+                              color: #e5e7eb;
+                              font-size: 15px;
+                              line-height: 1.7;
+                            "
+                          >
+                            <!-- START: INJECT FROM UCP -->
+                            {{main_content_html}}
+                            <!-- END: INJECT FROM UCP -->
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Quick Links Section (moved from sidebar) -->
+            <tr>
+              <td
+                class="px"
+                style="padding: 0 28px 18px 28px; background: #0b1220"
+              >
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  class="card"
+                  style="
+                    background: #0f172a;
+                    border: 1px solid rgba(255, 255, 255, 0.06);
+                    border-radius: 16px;
+                  "
+                >
+                  <tr>
+                    <td style="padding: 18px">
+                      <div
+                        style="
+                          font: 700 13px Arial, sans-serif;
+                          color: #9bd7ff;
+                          text-transform: uppercase;
+                          letter-spacing: 0.6px;
+                          text-align: center;
+                          margin-bottom: 12px;
+                        "
+                      >
+                        Quick Links
+                      </div>
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td align="center">
+                            <a
+                              href="https://fibonacci-olympiad.ro/ucp/info/timeline"
+                              style="
+                                font: 400 13px Arial, sans-serif;
+                                color: #c7d2fe;
+                                margin: 0 12px;
+                              "
+                              >Schedule</a
+                            >
+                            <span style="color: #1f2937; margin: 0 4px">•</span>
+                            <a
+                              href="https://fibonacci-olympiad.ro/regulations"
+                              style="
+                                font: 400 13px Arial, sans-serif;
+                                color: #c7d2fe;
+                                margin: 0 12px;
+                              "
+                              >Rules</a
+                            >
+                            <span style="color: #1f2937; margin: 0 4px">•</span>
+                            <a
+                              href="https://fibonacci-olympiad.ro/ucp/info/accommodation"
+                              style="
+                                font: 400 13px Arial, sans-serif;
+                                color: #c7d2fe;
+                                margin: 0 12px;
+                              "
+                              >Accommodation</a
+                            >
+                            <span style="color: #1f2937; margin: 0 4px">•</span>
+                            <a
+                              href="https://fibonacci-olympiad.ro/ucp/info/travel"
+                              style="
+                                font: 400 13px Arial, sans-serif;
+                                color: #c7d2fe;
+                                margin: 0 12px;
+                              "
+                              >Travel</a
+                            >
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Informational band -->
+            <tr>
+              <td
+                class="px"
+                style="padding: 0 28px 22px 28px; background: #0b1220"
+              >
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  style="
+                    background: linear-gradient(90deg, #0ea5e9, #2563eb);
+                    border-radius: 12px;
+                  "
+                >
+                  <tr>
+                    <td
+                      style="
+                        padding: 14px 18px;
+                        font: 700 13px Arial, Helvetica, sans-serif;
+                        color: #ffffff;
+                        text-align: center;
+                      "
+                    >
+                      We are currently working on system and template
+                      improvements. Stay tuned for updates!
+                    </td>
+                    <td align="right" class="hide-m" style="padding: 10px 14px">
+                      <!--[if mso]>
+                        <v:roundrect
+                          xmlns:v="urn:schemas-microsoft-com:vml"
+                          href="{{status_url}}"
+                          style="
+                            height: 36px;
+                            v-text-anchor: middle;
+                            width: 160px;
+                          "
+                          arcsize="12%"
+                          stroke="f"
+                          fillcolor="#0b1220"
+                        >
+                          <w:anchorlock />
+                          <center
+                            style="
+                              color: #ffffff;
+                              font-family: Arial, sans-serif;
+                              font-size: 13px;
+                            "
+                          >
+                            Event Updates
+                          </center>
+                        </v:roundrect>
+                      <![endif]-->
+                      <!--[if !mso]><!-- -->
+                      <a
+                        href="{{status_url}}"
+                        style="
+                          display: inline-block;
+                          padding: 10px 16px;
+                          background: #0b1220;
+                          color: #ffffff;
+                          border-radius: 10px;
+                          font: 700 13px Arial, Helvetica, sans-serif;
+                          text-align: center;
+                        "
+                        >Event Updates</a
+                      >
+                      <!--<![endif]-->
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td
+                class="px"
+                style="padding: 0 28px 36px 28px; background: #0b1220"
+              >
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  style="text-align: center"
+                >
+                  <tr>
+                    <td
+                      class="muted"
+                      style="
+                        font: 400 12px/1.7 Arial, Helvetica, 'Segoe UI',
+                          sans-serif;
+                        color: #6b7280;
+                      "
+                    >
+                      © 2025 Fibonacci Romania • Buzău, Romania<br />
+                      <a
+                        href="https://fibonacci-olympiad.ro"
+                        style="color: #9bd7ff"
+                        >fibonacci-olympiad.ro</a
+                      >
+                      <span style="color: #3b82f6"> • </span>
+                      <a
+                        href="https://fibonacci-olympiad.ro/legal/privacy"
+                        style="color: #9bd7ff"
+                        >Privacy</a
+                      >
+                      <span style="color: #3b82f6"> • </span>
+                      <a
+                        href="https://fibonacci-olympiad.ro/legal/terms"
+                        style="color: #9bd7ff"
+                        >Terms</a
+                      >
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- /Container -->
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
