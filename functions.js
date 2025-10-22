@@ -109,3 +109,48 @@ $(document).on("click", function (e) {
   const href = $card.data("href");
   if (href) window.location.href = href;
 });
+
+$(function () {
+  const $form = $("#math-registration-form");
+  if (!$form.length) return;
+
+  const $message = $("#registration-message");
+  const $submit = $form.find("button[type='submit']");
+
+  const showMessage = (type, text) => {
+    $message.removeClass("d-none alert-success alert-danger alert-warning");
+    $message.addClass(`alert-${type}`);
+    $message.text(text);
+  };
+
+  $form.on("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    $submit.prop("disabled", true).addClass("disabled");
+    showMessage("warning", "Se trimite formularul…");
+
+    fetch("/backend/api/public/registration.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then(async (response) => {
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          const error = data.message || "A apărut o eroare neașteptată.";
+          throw new Error(error);
+        }
+        return data;
+      })
+      .then((data) => {
+        showMessage("success", data.message || "Înscriere trimisă cu succes.");
+        $form.trigger("reset");
+      })
+      .catch((error) => {
+        showMessage("danger", error.message);
+      })
+      .finally(() => {
+        $submit.prop("disabled", false).removeClass("disabled");
+      });
+  });
+});

@@ -8,7 +8,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
                             <a href="index.html" class="footer-logo"><img src="/assets/images/logo/logo.webp" alt="logo"></a>
-                            <p>Fibonacci Romania brings together young innovators, fostering creativity, technology, and fair-play competition in robotics.</p>
+                            <p>Fibonacci Romania Math Olympiad aduce împreună elevi pasionați de matematică din toată țara, într-o experiență competițională dedicată logicii, creativității și excelenței academice.</p>
                             <ul class="social-share">
                                 <li><a href="<?= $settings['social_links']['facebook'] ?>"><i class="fa-brands fa-facebook-f"></i></a></li>
                                 <li><a href="<?= $settings['social_links']['youtube'] ?>"><i class="fa-brands fa-x-twitter"></i></a></li>
@@ -20,35 +20,31 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget widget-links">
                             <div class="widget-title">
-                                <h3>Categories</h3>
+                                <h3>Secțiuni olimpice</h3>
                             </div>
                             <ul class="footer-links">
-                                <li><a href="/regulation/mega-sumo">Mega Sumo</a></li>
-                                <li><a href="/regulation/mini-sumo">Mini Sumo</a></li>
-                                <li><a href="/regulation/micro-sumo">Micro Sumo</a></li>
-                                <li><a href="/regulation/humanoid-sumo">Humanoid Sumo</a></li>
-                                <li><a href="/regulation/humanoid-triathlon">Humanoid Triathlon</a></li>
-                                <li><a href="/regulation/line-follower-classic">Line Follower Classic</a></li>
-                                <li><a href="/regulation/line-follower-turbo">Line Follower Turbo</a></li>
-                                <li><a href="/regulation/line-follower-enhanced">Line Follower Enhanced</a></li>
-                                <li><a href="/regulation/drag-race">Drag Race</a></li>
+                                <li><a href="/about">Despre Olimpiadă</a></li>
+                                <li><a href="/principles">Principii & Format</a></li>
+                                <li><a href="/registration">Înscriere participanți</a></li>
+                                <li><a href="/contact">Locație & Contact</a></li>
+                                <li><a href="/admin/login">Acces Administrație</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
                             <div class="widget-title">
-                                <h3>Get In Touch</h3>
+                                <h3>Detalii contact</h3>
                             </div>
                             <ul class="footer-contact-info">
                                 <li>
-                                    <p><span>Address:</span>Liceul Teoretic de Informatica "Alexandru Marghiloman" <br> Str. Ivanetu Nr. 7, Buzau, Romania</p>
+                                    <p><span>Adresa:</span>Liceul Teoretic de Informatică „Alexandru Marghiloman” <br> Str. Ivănețu nr. 7, Buzău, România</p>
                                 </li>
                                 <li>
-                                    <p><span>Phone:</span><?= $settings['contact_phone'] ?></p>
+                                    <p><span>Telefon:</span><?= $settings['contact_phone'] ?></p>
                                 </li>
                                 <li>
-                                    <p><span>Mail Us:</span>office@fibonacci-olympiad.ro</p>
+                                    <p><span>Email:</span><?= $settings['contact_email'] ?></p>
                                 </li>
                             </ul>
                         </div>
@@ -56,21 +52,13 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
                             <div class="widget-title">
-                                <h3>Newslatter Signup</h3>
+                                <h3>Resurse utile</h3>
                             </div>
-                            <form action="#" class="subscribe-form" novalidate="true">
-                                <div class="mc-fields">
-                                    <input class="form-control" type="email" name="EMAIL" placeholder="Your Email" required="">
-                                    <input type="hidden" name="action" value="mailchimpsubscribe">
-                                    <button class="submit"><i class="fa-regular fa-arrow-right-long"></i></button>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div id="subscribe-result">
-                                    <div class="subscription-success"></div>
-                                    <div class="subscription-error"></div>
-                                </div>
-                            </form>
-                            <p class="mt-20">Subscribe us and get all the benifits from today.</p>
+                            <ul class="footer-links">
+                                <li><a href="/database.sql">Structură bază de date</a></li>
+                                <li><a href="/regulations">Regulament oficial</a></li>
+                                <li><a href="/contact">Program eveniment</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

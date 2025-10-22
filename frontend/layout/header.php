@@ -30,7 +30,7 @@
                 <div class="top-header">
                     <ul class="top-left">
                         <li><i class="fa-regular fa-phone"></i><a href="tel:<?= str_replace(' ', '', $settings['contact_phone']) ?>"><?= $settings['contact_phone'] ?></a></li>
-                        <li><i class="fa-regular fa-envelope-dot"></i>office@fibonacci-olympiad.ro</li>
+                        <li><i class="fa-regular fa-envelope-dot"></i><?= $settings['contact_email'] ?></li>
                     </ul>
                     <div class="top-right">
                         <ul class="top-header-nav">
@@ -57,12 +57,7 @@
                         <div class="mobile-menu-icon">
                             <i class="fa-regular fa-ellipsis-vertical"></i>
                         </div>
-                        <?php if (!isLogged()) : ?>
-                            <a href="/ucp/login" class="default-btn d-none d-lg-block d-md-block"><i class="fa-regular fa-table"></i>Login</a>
-                            <a href="/ucp/registration" class="default-btn d-none d-lg-block d-md-block"><i class="fa-solid fa-right-to-bracket"></i>Register</a>
-                        <?php else : ?>
-                            <a href="/ucp/" class="default-btn d-none d-lg-block d-md-block"><i class="fa-regular fa-table"></i>Go to UCP</a>
-                        <?php endif; ?>
+                        <a href="/registration" class="default-btn d-none d-lg-block d-md-block"><i class="fa-solid fa-right-to-bracket"></i>Înscrie-te</a>
                     </div>
                 </div>
                 <!--/.header-menu-wrap-->

@@ -1030,36 +1030,69 @@ CREATE TABLE `settings` (
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `key`, `value`, `type`, `updated_at`, `updated_by`) VALUES
-(1, 'competition_name', 'Fibonacci Romania Robot Olympiad', 'string', '2025-09-20 22:07:17', 'EssenByte Solutions'),
-(2, 'edition_year', '2026', 'int', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(3, 'current_phase', 'Edition I', 'string', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(4, 'registration_open', '2025-09-22 00:00:00', 'datetime', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(5, 'registration_close', '2026-01-01 23:59:59', 'datetime', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(6, 'timezone', 'Europe/Bucharest', 'string', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(7, 'contact_email', 'office@relativity.ro', 'string', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(8, 'technical_email', 'info@essenbyte.com', 'string', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(9, 'contact_phone', '+40 741 014 187', 'string', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(10, 'technical_phone', '+40 774 910 225', 'string', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(11, 'social_links', '{\"facebook\":\"https://www.facebook.com/RelativityRobotics\",\n\"instagram\":\"https://www.instagram.com/_relativity_team_/\",\n\"tiktok\":\"https://www.tiktok.com/@relativity_team\",\n\"youtube\":\"https://www.youtube.com/@Relativity_Team-jb7yp\"}', 'json', '2025-09-16 17:51:57', 'EssenByte Solutions'),
-(12, 'allowed_file_types', '[\"pdf\",\"zip\",\"jpg\",\"png\"]', 'json', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(13, 'max_upload_size_mb', '25', 'int', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(14, 'live_stream_url', 'https://www.youtube.com/watch?v=X7WFrsGHWzc&t=415s', 'string', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(15, 'scoring_algorithm_version', 'ScoreEngine v2.1 · Beta', 'string', '2025-09-20 01:31:18', 'EssenByte Solutions'),
-(16, 'announcement_banner', 'September 20 – Registrations Open for Fibonacci Romanian Robot Olympiad 2026!', 'string', '2025-08-30 22:06:38', 'EssenByte Solutions'),
-(17, 'theme', '{\"name\":\"default\"}', 'json', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(18, 'maintenance_mode', '0', 'bool', '2025-06-29 16:35:56', 'EssenByte Solutions'),
-(19, 'comingSoon_mode', '0', 'bool', '2025-09-30 11:27:29', 'EssenByte Solutions'),
-(20, 'navigation_pages', '[\n  {\"name\": \"Home\", \"link\": \"/\", \"class\": \"\", \"adminOnly\": false},\n  {\"name\": \"About\", \"link\": \"/about\", \"class\": \"\", \"adminOnly\": false},\n  {\"name\": \"Regulations\", \"link\": \"/regulations\", \"class\": \"\", \"adminOnly\": false},\n  {\"name\": \"Info\", \"link\": \"#\", \"class\": \"\", \"adminOnly\": false, \"submenu\": [\n        {\"name\": \"Event Details\", \"link\": \"/info/event\"},\n        {\"name\": \"Timeline\", \"link\": \"/info/timeline\"},\n        {\"name\": \"Deadline\", \"link\": \"/info/deadline\"},\n        {\"name\": \"Eligibility\", \"link\": \"/info/eligibility\"},\n        {\"name\": \"Fees\", \"link\": \"/info/fees\"},\n        {\"name\": \"Travel\", \"link\": \"/info/travel\"},\n        {\"name\": \"Accommodation\", \"link\": \"/info/accommodation\"}\n    ]},\n  {\"name\": \"Testimonials\", \"link\": \"/testimonial\", \"class\": \"\", \"adminOnly\": true},\n  {\"name\": \"Sponsors\", \"link\": \"/sponsors\", \"class\": \"\", \"adminOnly\": true},\n  {\"name\": \"Robots\", \"link\": \"/robots\", \"class\": \"\", \"adminOnly\": false},\n  {\"name\": \"Media\", \"link\": \"/media\", \"class\": \"\", \"adminOnly\": true},\n  {\"name\": \"Contact\", \"link\": \"/contact\", \"class\": \"\", \"adminOnly\": false}\n]', 'json', '2025-09-30 11:20:59', 'EssenByte Solutions'),
+(1, 'competition_name', 'Fibonacci Romania Math Olympiad', 'string', '2025-09-20 22:07:17', 'Fibonacci Admin'),
+(2, 'edition_year', '2026', 'int', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(3, 'current_phase', 'Ediția I', 'string', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(4, 'registration_open', '2026-01-10 08:00:00', 'datetime', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(5, 'registration_close', '2026-02-15 23:59:59', 'datetime', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(6, 'timezone', 'Europe/Bucharest', 'string', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(7, 'contact_email', 'contact@fibonacci-olympiad.ro', 'string', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(8, 'technical_email', 'support@fibonacci-olympiad.ro', 'string', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(9, 'contact_phone', '+40 745 123 456', 'string', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(10, 'technical_phone', '+40 733 654 321', 'string', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(11, 'social_links', '{"facebook":"https://www.facebook.com/fibonacci.olympiad","instagram":"https://www.instagram.com/fibonacci.olympiad","tiktok":"https://www.tiktok.com/@fibonacci.olympiad","youtube":"https://www.youtube.com/@fibonacci-olympiad"}', 'json', '2025-09-16 17:51:57', 'Fibonacci Admin'),
+(12, 'allowed_file_types', '["pdf","zip","jpg","png"]', 'json', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(13, 'max_upload_size_mb', '25', 'int', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(14, 'live_stream_url', 'https://fibonacci-olympiad.ro/live', 'string', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(15, 'scoring_algorithm_version', 'MathScore v1.0', 'string', '2025-09-20 01:31:18', 'Fibonacci Admin'),
+(16, 'announcement_banner', 'Înscrierile pentru Fibonacci Romania Math Olympiad 2026 sunt deschise!', 'string', '2025-08-30 22:06:38', 'Fibonacci Admin'),
+(17, 'theme', '{"name":"default"}', 'json', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(18, 'maintenance_mode', '0', 'bool', '2025-06-29 16:35:56', 'Fibonacci Admin'),
+(19, 'comingSoon_mode', '0', 'bool', '2025-09-30 11:27:29', 'Fibonacci Admin'),
+(20, 'navigation_pages', '[{"name":"Acasă","link":"/","class":"","adminOnly":false},{"name":"Despre","link":"/about","class":"","adminOnly":false},{"name":"Principii","link":"/principles","class":"","adminOnly":false},{"name":"Locație","link":"/contact","class":"","adminOnly":false},{"name":"Înscriere","link":"/registration","class":"","adminOnly":false}]', 'json', '2025-09-30 11:20:59', 'Fibonacci Admin'),
 (21, 'admin_notification', '{\r\n  \"visits\": true,\r\n  \"testimonials\": true\r\n}\r\n', 'json', '2025-07-18 21:08:21', 'EssenByte Solutions'),
 (22, 'securityToken', 'vPg9fSj0HcvHO0iKr0ooxP5txq8qoREjQoHw9KTJ94N7z35am5HRymTyeEEMawtDPqkSJ5fHdvC3BaUlItdQzxjlsMJTC5tGAIweY5o4fsPuAp389VgFxRPE6E2RqUZ70eRBElw2FgVh5Et9KX7V5gXyvLKivMA18jKGr9pwZF8F5al805Ujaj8Avr1gmF9y5meY9rJ0RK5fBj3QKAGvoJKcIVlyt8SFrdR4hEb4TRDAvklUkMUGuaV42q', 'string', '2025-09-20 17:52:50', 'EssenByte Solutions'),
 (23, 'competition_short_name', 'Fibonacci Romania', 'string', '2025-09-27 19:28:26', 'EssenByte Solutions'),
 (24, 'anno_banner_activate', '1', 'bool', '2025-08-30 22:06:17', 'EssenByte Solutions'),
 (25, 'participation_confirmation', '2026-01-01 23:59:59', 'datetime', '2025-09-27 19:29:16', 'EssenByte Solutions'),
-(26, 'comp_start', '2026-01-31', 'date', '2025-09-24 22:24:44', 'EssenByte Solutions'),
-(27, 'comp_end', '2026-02-01', 'date', '2025-09-24 22:24:42', 'EssenByte Solutions'),
-(28, 'competition_middle_name', 'Fibonacci Romania', 'string', '2025-09-20 22:07:45', 'EssenByte Solutions'),
-(29, 'payment_date', '2026-01-01 23:59:59', 'datetime', '2025-09-25 23:05:26', 'EssenByte Solutions');
+(26, 'comp_start', '2026-03-28', 'date', '2025-09-24 22:24:44', 'Fibonacci Admin'),
+(27, 'comp_end', '2026-03-30', 'date', '2025-09-24 22:24:42', 'Fibonacci Admin'),
+(28, 'competition_middle_name', 'Fibonacci Romania Math Olympiad', 'string', '2025-09-20 22:07:45', 'Fibonacci Admin'),
+(29, 'payment_date', '2026-02-20 23:59:59', 'datetime', '2025-09-25 23:05:26', 'Fibonacci Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `participants`
+--
+
+CREATE TABLE `participants` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `first_name` varchar(120) NOT NULL,
+  `last_name` varchar(120) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(40) NOT NULL,
+  `city` varchar(120) NOT NULL,
+  `school` varchar(255) NOT NULL,
+  `class` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+ALTER TABLE `participants`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `participants_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+ALTER TABLE `participants`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 -- --------------------------------------------------------
 
